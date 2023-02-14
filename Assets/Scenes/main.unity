@@ -148,7 +148,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147533675}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
+  m_CellSize: {x: 0.99, y: 0.99, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 1222348445}
   - component: {fileID: 1222348444}
   - component: {fileID: 1222348446}
+  - component: {fileID: 1222348447}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -399,7 +400,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1222348445}
-  speed: 10
+  animator: {fileID: 1222348447}
+  ground:
+    serializedVersion: 2
+    m_Bits: 256
+  collider: {fileID: 1222348444}
+  speed: 400
+  jumpForce: 400
+--- !u!95 &1222348447
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222348441}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e340c3b0a69a413458a0463b66ebedfe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1527319605
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +523,7 @@ GameObject:
   - component: {fileID: 2117012205}
   - component: {fileID: 2117012204}
   - component: {fileID: 2117012206}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
