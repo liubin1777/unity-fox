@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-  public Rigidbody2D rb; // 刚体
-  public Animator animator; // 动画控制器
+  [SerializeField]
+  private Rigidbody2D rb; // 刚体
+  private Animator animator; // 动画控制器
   public LayerMask ground; // 地面图层
   public Collider2D collider; // 碰撞体
 
@@ -19,7 +20,8 @@ public class PlayerController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-
+    rb = GetComponent<Rigidbody2D>();
+    animator = GetComponent<Animator>();
   }
 
   // FixedUpdate 一般处理物理相关的
