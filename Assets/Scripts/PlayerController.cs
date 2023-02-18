@@ -51,7 +51,8 @@ public class PlayerController : MonoBehaviour
   // 检测输入系统
   void checkInputStatus()
   {
-    if (Input.GetButtonDown("Jump"))
+    // 检测跳跃
+    if (Input.GetButtonDown("Jump") && collider.IsTouchingLayers(ground))
     {
       this.isJump = true;
     }
