@@ -8,11 +8,14 @@ public class PlayerController : MonoBehaviour
   [SerializeField]
   private Rigidbody2D rb; // 刚体
   private Animator animator; // 动画控制器
+
   public LayerMask ground; // 地面图层
   public Collider2D collider; // 碰撞体
 
   public float speed = 400f; // 水平速度
   public float jumpForce; // 跳跃的力
+
+  public int cherryCount; // 吃掉的樱桃个数
 
 
   private bool isJump; // 是否跳跃状态
@@ -34,6 +37,15 @@ public class PlayerController : MonoBehaviour
   void Update()
   {
     checkInputStatus();
+  }
+
+  void OnTriggerEnter2D(Collider2D other)
+  {
+    if (other.tag == "Collection")
+    {
+      Destroy(other.gameObject);
+      cherryCount++;
+    }
   }
 
   // 检测输入系统
@@ -99,4 +111,5 @@ public class PlayerController : MonoBehaviour
       animator.SetBool("idle", true);
     }
   }
+
 }
