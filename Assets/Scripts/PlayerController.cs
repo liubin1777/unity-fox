@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
   // 碰撞到触发器回调函数
   void OnTriggerEnter2D(Collider2D other)
   {
+    // Debug.Log(other.tag);
     if (other.tag == "Collection")
     {
       Destroy(other.gameObject);
@@ -74,12 +75,12 @@ public class PlayerController : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.S))
     {
       this.isCrouch = true;
-      this.boxCollider2D.enabled = false;
+      this.boxCollider2D.isTrigger = true;
     }
-    else if (Input.GetKeyUp(KeyCode.S))
+    else if (!boxCollider2D.IsTouchingLayers(ground)) // 头顶没有遮挡物才能站立起来
     {
       this.isCrouch = false;
-      this.boxCollider2D.enabled = true;
+      this.boxCollider2D.isTrigger = false;
     }
   }
 
