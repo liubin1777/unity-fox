@@ -72,21 +72,22 @@ public class PlayerController : MonoBehaviour
     }
 
     // 检测下蹲
-    if (Input.GetKeyDown(KeyCode.S))
+    if (Input.GetKey(KeyCode.S))
     {
+      // Debug.Log("蹲下");
       this.isCrouch = true;
-      this.boxCollider2D.isTrigger = true;
     }
     else if (!boxCollider2D.IsTouchingLayers(ground)) // 头顶没有遮挡物才能站立起来
     {
+      // Debug.Log("头顶没有接触障碍物");
       this.isCrouch = false;
-      this.boxCollider2D.isTrigger = false;
     }
   }
 
   // 移动逻辑
   void Movement()
   {
+
     // 水平速度x < 0: 向左，> 0：向右
     if (this.speedFactor != 0)
     {
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
     animator.SetBool("idle", false);
 
     // 水平速度
-    animator.SetFloat("running", MathF.Abs(this.speedFactor));
+    animator.SetFloat("running", this.isCrouch ? 0 : MathF.Abs(this.speedFactor));
 
     // 跳跃
     if (this.isJump)
@@ -142,6 +143,7 @@ public class PlayerController : MonoBehaviour
 
     // 下蹲
     animator.SetBool("crouch", this.isCrouch);
+    this.boxCollider2D.isTrigger = this.isCrouch;
   }
 
 }
