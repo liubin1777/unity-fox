@@ -5629,9 +5629,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8978531698782513629, guid: f5afdb8bbb92c6d4b83ef464a83a5022,
         type: 3}
+      propertyPath: m_Size.y
+      value: 0.43565756
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978531698782513629, guid: f5afdb8bbb92c6d4b83ef464a83a5022,
+        type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: a94fa0fe0d0abdf45a7395a9034fa550, type: 2}
+    - target: {fileID: 8978531698782513629, guid: f5afdb8bbb92c6d4b83ef464a83a5022,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.034284204
+      objectReference: {fileID: 0}
     - target: {fileID: 8978531698782513631, guid: f5afdb8bbb92c6d4b83ef464a83a5022,
         type: 3}
       propertyPath: rb
@@ -5647,5 +5657,15 @@ PrefabInstance:
       propertyPath: circleCollider2D
       value: 
       objectReference: {fileID: 1222348444}
+    - target: {fileID: 8978531698782513633, guid: f5afdb8bbb92c6d4b83ef464a83a5022,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3669511
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978531698782513633, guid: f5afdb8bbb92c6d4b83ef464a83a5022,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.6291696
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5afdb8bbb92c6d4b83ef464a83a5022, type: 3}
