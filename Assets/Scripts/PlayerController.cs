@@ -1,10 +1,15 @@
+using System.Net.Mime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+
+
   [SerializeField]
   private Rigidbody2D rb; // 刚体
   private Animator animator; // 动画控制器
@@ -20,6 +25,7 @@ public class PlayerController : MonoBehaviour
   public float jumpForce; // 跳跃的力
 
   public int cherryCount; // 吃掉的樱桃个数
+  public TextMeshProUGUI cherryText;
 
   private bool isJump; // 是否跳跃状态
   private bool isCrouch; // 是否下蹲状态
@@ -50,7 +56,8 @@ public class PlayerController : MonoBehaviour
     if (other.tag == "Collection")
     {
       Destroy(other.gameObject);
-      cherryCount++;
+      this.cherryCount++;
+      this.cherryText.text = this.cherryCount.ToString();
     }
   }
 
