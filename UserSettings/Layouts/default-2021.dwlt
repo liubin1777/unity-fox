@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357.3334
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 164
+  controlID: 165
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 165
+  controlID: 166
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -173,7 +173,7 @@ MonoBehaviour:
   - {fileID: 17}
   - {fileID: 15}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 188
+  controlID: 60
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 24
+  controlID: 127
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -322,8 +322,8 @@ MonoBehaviour:
     y: 0
     width: 521.3334
     height: 873.3333
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -390,14 +390,14 @@ MonoBehaviour:
     - {fileID: 6961057984440382836, guid: 6d2d5482d9056d241aafc4c0e9168191, type: 2}
     - {fileID: 1985214213605018111, guid: 0f36a994c1e79ee4d85d581934aab07c, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.9616796
+    - e00: 1.1674287
       e01: 0
       e02: 0
-      e03: 66.9444
+      e03: -54.268738
       e10: 0
-      e11: 0.9616796
+      e11: 1.1674287
       e12: 0
-      e13: 137.71127
+      e13: 82.22388
       e20: 0
       e21: 0
       e22: 1
@@ -737,9 +737,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 19.634258, y: 2.4421856, z: -0.052335884}
+    m_Target: {x: 577.1448, y: 510.6888, z: -4.499675}
     speed: 2
-    m_Value: {x: 19.634258, y: 2.4421856, z: -0.052335884}
+    m_Value: {x: 577.1448, y: 510.6888, z: -4.499675}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -790,9 +790,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.3635526
+    m_Target: 467.69482
     speed: 2
-    m_Value: 4.3635526
+    m_Value: 467.69482
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -976,7 +976,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 14fbffffdc530000
+      m_ExpandedIDs: b2c7ffff14fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1078,22 +1078,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Packages/com.unity.2d.sprite/Editor/ObjectMenuCreation/DefaultAssets/Textures/v2
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\MyUnity\Code\MyCode\M_Studio\unity-fox
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 134.99994}
-    m_SelectedIDs: 82600000
-    m_LastClickedID: 24706
-    m_ExpandedIDs: 000000004e570000505700005257000054570000565700006a5f0000aa6200000c660000746600005c6a000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 26.999939}
+    m_SelectedIDs: 98570000
+    m_LastClickedID: 22424
+    m_ExpandedIDs: 0000000060570000625700006457000066570000685700006a5700006c5700006e570000705700007257000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1121,7 +1121,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004e57000050570000525700005457000056570000
+    m_ExpandedIDs: 0000000060570000625700006457000066570000685700006a5700006c5700006e5700007057000072570000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
