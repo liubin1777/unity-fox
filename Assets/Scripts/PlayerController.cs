@@ -61,6 +61,19 @@ public class PlayerController : MonoBehaviour
     }
   }
 
+  // 消灭敌人
+  private void OnCollisionEnter2D(Collision2D other)
+  {
+    if (animator.GetBool("falling"))
+    {
+      if (other.gameObject.tag == "Enemy")
+      {
+        rb.velocity = new Vector2(rb.velocity.x, this.jumpForce * Time.deltaTime);
+        Destroy(other.gameObject);
+      }
+    }
+  }
+
   // 检测输入系统
   void checkInputStatus()
   {
