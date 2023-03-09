@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
   private bool isJump; // 是否跳跃状态
   private bool isCrouch; // 是否下蹲状态
+  private bool isHurt; // 是否受到伤害
 
   // Start is called before the first frame update
   void Start()
@@ -40,7 +41,10 @@ public class PlayerController : MonoBehaviour
   // FixedUpdate 一般处理物理相关的
   void FixedUpdate()
   {
-    Movement();
+    if (!this.isHurt)
+    {
+      Movement();
+    }
   }
 
   void Update()
@@ -64,12 +68,24 @@ public class PlayerController : MonoBehaviour
   // 消灭敌人
   private void OnCollisionEnter2D(Collision2D other)
   {
-    if (animator.GetBool("falling"))
+    if (other.gameObject.tag == "Enemy")
     {
-      if (other.gameObject.tag == "Enemy")
+      if (animator.GetBool("falling"))
       {
         rb.velocity = new Vector2(rb.velocity.x, this.jumpForce * Time.deltaTime);
         Destroy(other.gameObject);
+      }
+      else if (transform.position.x < other.gameObject.transform.position.x)
+      {
+        Debug.Log("[player] 左侧受伤");
+        this.rb.velocity = new Vector2(-4, rb.velocity.y);
+        this.isHurt = true;
+      }
+      else if (transform.position.x > other.gameObject.transform.position.x)
+      {
+        Debug.Log("[player] 右侧受伤");
+        this.rb.velocity = new Vector2(4, rb.velocity.y);
+        this.isHurt = true;
       }
     }
   }
@@ -159,6 +175,14 @@ public class PlayerController : MonoBehaviour
     {
       animator.SetBool("falling", false);
       animator.SetBool("idle", true);
+    }
+
+    // 受伤动画
+    animator.SetBool("hurt", this.isHurt);
+    // 受伤动画执行后恢复状态标识
+    if (this.isHurt && Mathf.Abs(this.rb.velocity.x) < 0.1f)
+    {
+      this.isHurt = false;
     }
 
     // 下蹲
