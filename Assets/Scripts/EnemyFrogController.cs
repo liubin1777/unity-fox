@@ -1,19 +1,26 @@
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyFrogController : MonoBehaviour
 {
-  private Rigidbody2D rb;
+  private Rigidbody2D rb; // 刚体
+  private Collider2D myCollider; // 碰撞器
+  private Animator animator; // 动画控制器
   public Transform leftPoint, rightPoint;
-  public float speed;
+  public float speed, jumpForce;
   private bool faceLeft = true;
   private float leftx, rightx;
+  public LayerMask ground; // 地面图层
 
   // Start is called before the first frame update
   void Start()
   {
+    // 初始化的时候获取组件
     rb = GetComponent<Rigidbody2D>();
+    animator = GetComponent<Animator>();
+    myCollider = GetComponent<Collider2D>();
 
     // 解除子对象关系
     // transform.DetachChildren();
@@ -27,28 +34,61 @@ public class EnemyFrogController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    Movement();
+    // Movement();
+    SwitchAnim();
   }
 
+  // 移动
   void Movement()
   {
-    if (faceLeft)
+
+    // 地面上跳跃
+    if (myCollider.IsTouchingLayers(ground))
     {
-      rb.velocity = new Vector2(-speed, rb.velocity.y);
-      if (transform.position.x < leftx)
+      animator.SetBool("jumping", true);
+      animator.SetBool("falling", false);
+
+      rb.velocity = new Vector2(speed * (faceLeft ? -1 : 1), jumpForce);
+    }
+  }
+
+  // 切换动画
+  void SwitchAnim()
+  {
+    // 最高点后切换下落状态
+    if (rb.velocity.y < 0.1f)
+    {
+      animator.SetBool("falling", true);
+      animator.SetBool("jumping", false);
+    }
+
+    if (myCollider.IsTouchingLayers(ground) && animator.GetBool("falling"))
+    {
+      animator.SetBool("falling", false);
+    }
+
+    if (myCollider.IsTouchingLayers(ground))
+    {
+      // 面向左侧运动
+      if (faceLeft)
       {
-        transform.localScale = new Vector3(-1, 1, 1);
-        faceLeft = false;
+        // 超过左侧锚点镜像掉头
+        if (transform.position.x < leftx)
+        {
+          transform.localScale = new Vector3(-1, 1, 1);
+          faceLeft = false;
+        }
+      }
+      else // 面向右侧运动
+      {
+        //   rb.velocity = new Vector2(speed, jumpForce);
+        if (transform.position.x > rightx)
+        {
+          transform.localScale = new Vector3(1, 1, 1);
+          faceLeft = true;
+        }
       }
     }
-    else
-    {
-      rb.velocity = new Vector2(speed, rb.velocity.y);
-      if (transform.position.x > rightx)
-      {
-        transform.localScale = new Vector3(1, 1, 1);
-        faceLeft = true;
-      }
-    }
+
   }
 }
