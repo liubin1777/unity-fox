@@ -73,7 +73,9 @@ public class PlayerController : MonoBehaviour
       if (animator.GetBool("falling"))
       {
         rb.velocity = new Vector2(rb.velocity.x, this.jumpForce * Time.deltaTime);
-        Destroy(other.gameObject);
+
+        EnemyFrogController frog = other.gameObject.GetComponent<EnemyFrogController>();
+        frog.Death();
       }
       else if (transform.position.x < other.gameObject.transform.position.x)
       {

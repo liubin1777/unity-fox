@@ -91,4 +91,14 @@ public class EnemyFrogController : MonoBehaviour
     }
 
   }
+
+  public void Death()
+  {
+    animator.SetTrigger("death");
+  }
+
+  void DestoryMe()
+  {
+    Destroy(gameObject);
+  }
 }
