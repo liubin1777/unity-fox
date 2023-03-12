@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     // Debug.Log(other.tag);
     if (other.tag == "Collection")
     {
+      cherryAudio.Play();
       Destroy(other.gameObject);
       this.cherryCount++;
       this.cherryText.text = this.cherryCount.ToString();
