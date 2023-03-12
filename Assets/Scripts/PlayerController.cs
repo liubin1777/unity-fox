@@ -74,8 +74,8 @@ public class PlayerController : MonoBehaviour
       {
         rb.velocity = new Vector2(rb.velocity.x, this.jumpForce * Time.deltaTime);
 
-        EnemyFrogController frog = other.gameObject.GetComponent<EnemyFrogController>();
-        frog.Death();
+        BaseEnemy enemy = other.gameObject.GetComponent<BaseEnemy>();
+        enemy.death();
       }
       else if (transform.position.x < other.gameObject.transform.position.x)
       {

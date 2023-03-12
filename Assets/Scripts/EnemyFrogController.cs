@@ -1,13 +1,10 @@
-using System.Text.RegularExpressions;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFrogController : MonoBehaviour
+public class EnemyFrogController : BaseEnemy
 {
   private Rigidbody2D rb; // 刚体
   private Collider2D myCollider; // 碰撞器
-  private Animator animator; // 动画控制器
+  // private Animator animator; // 动画控制器
   public Transform leftPoint, rightPoint;
   public float speed, jumpForce;
   private bool faceLeft = true;
@@ -15,11 +12,13 @@ public class EnemyFrogController : MonoBehaviour
   public LayerMask ground; // 地面图层
 
   // Start is called before the first frame update
-  void Start()
+  protected override void Start()
   {
+    base.Start();
+
     // 初始化的时候获取组件
     rb = GetComponent<Rigidbody2D>();
-    animator = GetComponent<Animator>();
+    // animator = GetComponent<Animator>();
     myCollider = GetComponent<Collider2D>();
 
     // 解除子对象关系
@@ -92,13 +91,13 @@ public class EnemyFrogController : MonoBehaviour
 
   }
 
-  public void Death()
-  {
-    animator.SetTrigger("death");
-  }
+  // public void Death()
+  // {
+  //   animator.SetTrigger("death");
+  // }
 
-  void DestoryMe()
-  {
-    Destroy(gameObject);
-  }
+  // void DestoryMe()
+  // {
+  //   Destroy(gameObject);
+  // }
 }

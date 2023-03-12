@@ -1,23 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyEagleController : MonoBehaviour
+public class EnemyEagleController : BaseEnemy
 {
   private Rigidbody2D rb; // 刚体
   private Collider2D myCollider; // 碰撞器
-  private Animator animator; // 动画控制器
+  // private Animator animator; // 动画控制器
   public Transform topPoint, bottomPoint;
   public float speed;
   private bool isUp = true;
   private float topY, bottomY;
 
-  // Start is called before the first frame update
-  void Start()
+  // 重写父类的方法
+  protected override void Start()
   {
+    // 调用父类
+    base.Start();
+
     // 初始化的时候获取组件
     rb = GetComponent<Rigidbody2D>();
-    animator = GetComponent<Animator>();
+    // animator = GetComponent<Animator>();
     myCollider = GetComponent<Collider2D>();
 
     // 解除子对象关系
