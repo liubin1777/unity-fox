@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour
   private bool isCrouch; // 是否下蹲状态
   private bool isHurt; // 是否受到伤害
 
+  public AudioSource jumpAudio; // 跳跃音效
+  public AudioSource hurtAudio; // 受伤害的音效
+  public AudioSource cherryAudio; // 吃樱桃的音效
+
   // Start is called before the first frame update
   void Start()
   {
@@ -82,12 +86,15 @@ public class PlayerController : MonoBehaviour
       {
         Debug.Log("[player] 左侧受伤");
         this.rb.velocity = new Vector2(-4, rb.velocity.y);
+        hurtAudio.Play();
         this.isHurt = true;
+
       }
       else if (transform.position.x > other.gameObject.transform.position.x)
       {
         Debug.Log("[player] 右侧受伤");
         this.rb.velocity = new Vector2(4, rb.velocity.y);
+        hurtAudio.Play();
         this.isHurt = true;
       }
     }
@@ -103,6 +110,7 @@ public class PlayerController : MonoBehaviour
     // 检测跳跃
     if (Input.GetButtonDown("Jump") && circleCollider2D.IsTouchingLayers(ground))
     {
+      jumpAudio.Play();
       this.isJump = true;
     }
     else if (!circleCollider2D.IsTouchingLayers(ground))
