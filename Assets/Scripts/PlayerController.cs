@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
       {
         rb.velocity = new Vector2(rb.velocity.x, this.jumpForce * Time.deltaTime);
 
+        // 消灭敌人
         BaseEnemy enemy = other.gameObject.GetComponent<BaseEnemy>();
         enemy.death();
       }
