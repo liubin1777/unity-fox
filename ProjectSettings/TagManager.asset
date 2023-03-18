@@ -50,6 +50,9 @@ TagManager:
   - name: Environment
     uniqueID: 713218229
     locked: 0
+  - name: Ground
+    uniqueID: 573743693
+    locked: 0
   - name: Player
     uniqueID: 2352952839
     locked: 0
@@ -58,7 +61,4 @@ TagManager:
     locked: 0
   - name: Frontground
     uniqueID: 2070697317
-    locked: 0
-  - name: Ground
-    uniqueID: 573743693
     locked: 0

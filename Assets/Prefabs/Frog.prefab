@@ -197,7 +197,7 @@ MonoBehaviour:
   jumpForce: 5
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!82 &765831123769710395
 AudioSource:
   m_ObjectHideFlags: 0
