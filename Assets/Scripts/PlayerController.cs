@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
 
   public AudioSource jumpAudio; // 跳跃音效
   public AudioSource hurtAudio; // 受伤害的音效
-  public AudioSource cherryAudio; // 吃樱桃的音效
 
   // Start is called before the first frame update
   void Start()
@@ -70,10 +69,11 @@ public class PlayerController : MonoBehaviour
     // Debug.Log(other.tag);
     if (other.tag == "Collection")
     {
-      cherryAudio.Play();
-      Destroy(other.gameObject);
-      this.cherryCount++;
-      this.cherryText.text = this.cherryCount.ToString();
+      // 直接播放 cherry 名字为 collection 的动画
+      other.gameObject.GetComponent<Animator>().Play("collection");
+      // other.gameObject.GetComponent<Animator>().SetTrigger("collection");
+      // Destroy(other.gameObject);
+      // this.cherryCount++;
     }
 
     // 碰撞到死亡线的时候，出发死亡逻辑
@@ -84,6 +84,12 @@ public class PlayerController : MonoBehaviour
       // 2s 后调用 restart 方法
       Invoke("restart", 2f);
     }
+  }
+
+  public void updateCherryCount()
+  {
+    this.cherryCount++;
+    this.cherryText.text = this.cherryCount.ToString();
   }
 
   // 消灭敌人
@@ -179,7 +185,7 @@ public class PlayerController : MonoBehaviour
   {
 
     // 默认 idle false
-    animator.SetBool("idle", false);
+    // animator.SetBool("idle", false);
 
     // 水平速度
     animator.SetFloat("running", this.isCrouch ? 0 : MathF.Abs(this.speedFactor));

@@ -25,6 +25,7 @@ public class BaseEnemy : MonoBehaviour
   {
     audioSource.Play();
     animator.SetTrigger("death");
+    GetComponent<Collider2D>().enabled = false;
   }
 
   public void destoryMe()
