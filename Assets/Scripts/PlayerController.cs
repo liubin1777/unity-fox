@@ -45,6 +45,12 @@ public class PlayerController : MonoBehaviour
   // FixedUpdate 一般处理物理相关的
   void FixedUpdate()
   {
+    // Debug.Log("在fixedUpdate中执行");
+    // Debug.Log("time:" + Time.time);
+    // Debug.Log("deltatime" + Time.deltaTime);
+    // Debug.Log("fixedtime:" + Time.fixedTime);
+    // Debug.Log("fixedDeltatimetime:" + Time.fixedDeltaTime);
+
     if (!this.isHurt)
     {
       Movement();
@@ -125,7 +131,7 @@ public class PlayerController : MonoBehaviour
       // Debug.Log("蹲下");
       this.isCrouch = true;
     }
-    else if (!boxCollider2D.IsTouchingLayers(ground)) // 头顶没有遮挡物才能站立起来
+    else if (!boxCollider2D.IsTouchingLayers(ground)) // 头顶没有遮挡物才能站立起来 , 也可以使用 Physics2D.OverlapCircle 方式来检测
     {
       // Debug.Log("头顶没有接触障碍物");
       this.isCrouch = false;
@@ -139,7 +145,7 @@ public class PlayerController : MonoBehaviour
     // 水平速度x < 0: 向左，> 0：向右
     if (this.speedFactor != 0)
     {
-      rb.velocity = new Vector2(this.speedFactor * speed * Time.deltaTime, rb.velocity.y);
+      rb.velocity = new Vector2(this.speedFactor * speed * Time.fixedDeltaTime, rb.velocity.y);
     }
 
     // 水平方向
@@ -153,7 +159,7 @@ public class PlayerController : MonoBehaviour
     if (this.isJump)
     {
       // Debug.Log("Input.Jump = " + Input.GetAxis("Vertical"));
-      rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.deltaTime);
+      rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime);
     }
 
   }
