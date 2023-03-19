@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -73,6 +74,15 @@ public class PlayerController : MonoBehaviour
       Destroy(other.gameObject);
       this.cherryCount++;
       this.cherryText.text = this.cherryCount.ToString();
+    }
+
+    // 碰撞到死亡线的时候，出发死亡逻辑
+    if (other.tag == "DeathLine")
+    {
+      // 关闭所有音乐
+      GetComponent<AudioSource>().enabled = false;
+      // 2s 后调用 restart 方法
+      Invoke("restart", 2f);
     }
   }
 
@@ -208,4 +218,8 @@ public class PlayerController : MonoBehaviour
     this.boxCollider2D.isTrigger = this.isCrouch;
   }
 
+  void restart()
+  {
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+  }
 }

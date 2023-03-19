@@ -7,6 +7,7 @@ TagManager:
   - Collection
   - TopColliderTrigger
   - Enemy
+  - DeathLine
   layers:
   - Default
   - TransparentFX

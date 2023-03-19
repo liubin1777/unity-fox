@@ -14,6 +14,7 @@ public class house : MonoBehaviour
   {
     if (other.tag == "Player")
     {
+      dialogUI.SetActive(true);
       dialogAnimator.SetBool("enter", true);
       dialogAnimator.SetBool("exit", false);
     }
