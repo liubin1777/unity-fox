@@ -208,7 +208,6 @@ public class PlayerController : MonoBehaviour
     else if (circleCollider2D.IsTouchingLayers(ground))
     {
       animator.SetBool("falling", false);
-      animator.SetBool("idle", true);
     }
 
     // 受伤动画

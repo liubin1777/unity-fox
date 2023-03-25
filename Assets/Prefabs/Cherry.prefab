@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cherryAudio: {fileID: 4567361625698261674}
-  myCollider: {fileID: 0}
+  myCollider: {fileID: 6307505154933985767}
 --- !u!95 &3126154229878624158
 Animator:
   serializedVersion: 5
