@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
   private Rigidbody2D rb; // 刚体
   private Animator animator; // 动画控制器
 
+  public Transform groundCheck; // 地面检测
+
   public LayerMask ground; // 地面图层
   public Collider2D circleCollider2D; // 碰撞体
   public Collider2D boxCollider2D; // 碰撞体
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
   private float faceDirection; // 水平朝向
 
   public float jumpForce; // 跳跃的力
+  private int jumpCount; // 可跳跃次数
 
   public int cherryCount; // 吃掉的樱桃个数
   public TextMeshProUGUI cherryText;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
   private bool isJump; // 是否跳跃状态
   private bool isCrouch; // 是否下蹲状态
   private bool isHurt; // 是否受到伤害
+  private bool isGround; // 是否在地面上
 
   public AudioSource jumpAudio; // 跳跃音效
   public AudioSource hurtAudio; // 受伤害的音效
@@ -45,7 +49,7 @@ public class PlayerController : MonoBehaviour
   // FixedUpdate 一般处理物理相关的
   void FixedUpdate()
   {
-    // Debug.Log("在fixedUpdate中执行");
+    Debug.Log("在 fixedUpdate 中执行");
     // Debug.Log("time:" + Time.time);
     // Debug.Log("deltatime" + Time.deltaTime);
     // Debug.Log("fixedtime:" + Time.fixedTime);
@@ -54,11 +58,15 @@ public class PlayerController : MonoBehaviour
     if (!this.isHurt)
     {
       Movement();
+
+      checkJump();
     }
   }
 
   void Update()
   {
+    Debug.Log("在 update 中执行");
+
     checkInputStatus();
     SwitchAnim();
   }
@@ -123,23 +131,59 @@ public class PlayerController : MonoBehaviour
     }
   }
 
+  // 检测跳跃
+  void checkJump()
+  {
+    // 二段跳
+    isGround = Physics2D.OverlapCircle(groundCheck.position, 0.2f, ground);
+    // isGround = circleCollider2D.IsTouchingLayers(ground);
+
+    if (isGround && rb.velocity.y == 0)
+    {
+      // Debug.Log("地面上");
+      this.jumpCount = 2;
+    }
+
+    if (this.isJump && jumpCount > 0)
+    {
+      // Debug.Log("跳跃-before" + this.isJump + " | " + jumpCount);
+
+      --this.jumpCount;
+      rb.velocity = Vector2.up * jumpForce * Time.fixedDeltaTime;
+      animator.SetBool("jumping", true);
+      this.isJump = false;
+
+      // rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime);
+
+      Debug.Log("跳跃-after" + this.isJump + " | " + jumpCount);
+
+    }
+
+    // 检测跳跃 --- 一段跳
+    // if (Input.GetButtonDown("Jump") && circleCollider2D.IsTouchingLayers(ground))
+    // {
+    //   jumpAudio.Play();
+    //   this.isJump = true;
+    // }
+    // else if (!circleCollider2D.IsTouchingLayers(ground))
+    // {
+    //   this.isJump = false;
+    // }
+  }
+
   // 检测输入系统
   void checkInputStatus()
   {
+
+    if (Input.GetButtonDown("Jump") && this.jumpCount > 0)
+    {
+      Debug.Log("触发跳跃");
+      this.isJump = true;
+    }
+
     // 获取水平输入
     this.speedFactor = Input.GetAxis("Horizontal"); // 获取 -1。。。0.。。1 之间的小数
     this.faceDirection = Input.GetAxisRaw("Horizontal"); // 获取 -1 0 1 三个整数
-
-    // 检测跳跃
-    if (Input.GetButtonDown("Jump") && circleCollider2D.IsTouchingLayers(ground))
-    {
-      jumpAudio.Play();
-      this.isJump = true;
-    }
-    else if (!circleCollider2D.IsTouchingLayers(ground))
-    {
-      this.isJump = false;
-    }
 
     // 检测下蹲
     if (Input.GetKey(KeyCode.S))
@@ -171,13 +215,6 @@ public class PlayerController : MonoBehaviour
       transform.localScale = new Vector3(this.faceDirection, 1, 1);
     }
 
-    // 跳跃
-    if (this.isJump)
-    {
-      // Debug.Log("Input.Jump = " + Input.GetAxis("Vertical"));
-      rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime);
-    }
-
   }
 
   // 变换动画
@@ -190,17 +227,12 @@ public class PlayerController : MonoBehaviour
     // 水平速度
     animator.SetFloat("running", this.isCrouch ? 0 : MathF.Abs(this.speedFactor));
 
-    // 跳跃
-    if (this.isJump)
-    {
-      animator.SetBool("jumping", true);
-    }
-
     // 跳跃下落 or idle 切换
     if (animator.GetBool("jumping"))
     {
       if (rb.velocity.y < 0)
       {
+        Debug.Log("触发下落动画");
         animator.SetBool("jumping", false);
         animator.SetBool("falling", true);
       }
