@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
   // FixedUpdate 一般处理物理相关的
   void FixedUpdate()
   {
-    Debug.Log("在 fixedUpdate 中执行");
+    // Debug.Log("在 fixedUpdate 中执行");
     // Debug.Log("time:" + Time.time);
     // Debug.Log("deltatime" + Time.deltaTime);
     // Debug.Log("fixedtime:" + Time.fixedTime);
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
   void Update()
   {
-    Debug.Log("在 update 中执行");
+    // Debug.Log("在 update 中执行");
 
     checkInputStatus();
     SwitchAnim();
@@ -117,7 +117,8 @@ public class PlayerController : MonoBehaviour
       {
         Debug.Log("[player] 左侧受伤");
         this.rb.velocity = new Vector2(-4, rb.velocity.y);
-        hurtAudio.Play();
+        // hurtAudio.Play();
+        SoundManager.instance.playHurt();
         this.isHurt = true;
 
       }
@@ -125,7 +126,8 @@ public class PlayerController : MonoBehaviour
       {
         Debug.Log("[player] 右侧受伤");
         this.rb.velocity = new Vector2(4, rb.velocity.y);
-        hurtAudio.Play();
+        // hurtAudio.Play();
+        SoundManager.instance.playHurt();
         this.isHurt = true;
       }
     }
@@ -152,6 +154,8 @@ public class PlayerController : MonoBehaviour
       rb.velocity = Vector2.up * jumpForce * Time.fixedDeltaTime;
       animator.SetBool("jumping", true);
       this.isJump = false;
+
+      SoundManager.instance.playJump();
 
       // rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime);
 

@@ -21,7 +21,8 @@ public class Cherry : MonoBehaviour
 
   void disableTrigger()
   {
-    cherryAudio.Play();
+    // cherryAudio.Play();
+    SoundManager.instance.playCherry();
     myCollider.enabled = false;
   }
 
